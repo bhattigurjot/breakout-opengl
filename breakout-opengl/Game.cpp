@@ -1,6 +1,6 @@
-#include "game.h"
-
 #include <iostream>
+
+#include "Game.h"
 
 Game::Game(GLuint width, GLuint height)
 	: State(GAME_ACTIVE), Keys(), Width(width), Height(height)
@@ -31,10 +31,4 @@ void Game::Update(GLfloat dt)
 void Game::Render()
 {
 
-}
-
-int main(int *argc, char **argv[])
-{
-	std::cout << "hello" << std::endl;
-	return 0;
 }
