@@ -3,8 +3,7 @@
 #include <map>
 #include <string>
 
-#include <glad\glad.h>
-#include <GLFW\glfw3.h>
+#include <gl/glew.h>
 
 #include "Shader.h">
 #include "Texture.h">

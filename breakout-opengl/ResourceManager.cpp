@@ -3,7 +3,7 @@
 #include <sstream>
 #include <fstream>
 
-#include "src/SOIL.h"
+#include "src/stb_image.h"
 
 #include "ResourceManager.h"
 
@@ -99,10 +99,12 @@ Texture2D ResourceManager::loadTextureFromFile(const GLchar *file, GLboolean alp
 	}
 	// Load image
 	int width, height;
-	unsigned char* image = SOIL_load_image(file, &width, &height, 0, texture.Image_Format == GL_RGBA ? SOIL_LOAD_RGBA : SOIL_LOAD_RGB);
+	int nrChannels;
+	unsigned char*image = stbi_load(file, &width, &height, &nrChannels, 0);
+	texture.Image_Format == GL_RGBA ? GL_RGBA : GL_RGB;
 	// Now generate texture
 	texture.Generate(width, height, image);
 	// And finally free image data
-	SOIL_free_image_data(image);
+	stbi_image_free(image);
 	return texture;
 }

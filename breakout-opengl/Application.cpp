@@ -1,4 +1,5 @@
-#include <glad/glad.h>
+#define GLEW_STATIC
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include <iostream>
@@ -28,12 +29,9 @@ int main(int argc, char *argv[])
 	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Breakout", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 
-	// glad: load all OpenGL function pointers
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cerr << "Failed to initialize GLAD" << std::endl;
-		return -1;
-	}
+	glewExperimental = GL_TRUE;
+	glewInit();
+	glGetError(); // Call it once to catch glewInit() bug, all other errors are now from our application.
 
 	glfwSetKeyCallback(window, key_callback);
 
